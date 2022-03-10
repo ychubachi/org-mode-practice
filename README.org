@@ -1,0 +1,25 @@
+* org-mode-practice
+org-modeの練習
+
+* 設定
+
+#+begin_src emacs-lisp
+   (leaf *emacs-lisp-mode
+     :hook
+     ((emacs-lisp-mode-hook . (add-hook 'before-save-hook 'eval-buffer))))
+#+end_src
+
+#+RESULTS:
+: *emacs-lisp-mode
+
+;; [Home] Emacs Lisp Mode https://www.emacswiki.org/emacs/EmacsLispMode
+#+begin_src emacs-lisp
+  (add-hook 'emacs-lisp-mode-hook
+	    (lambda ()
+	      (add-hook 'make-local-variable 'after-save-hook
+			(lambda ()
+			  (eval-buffer)))))
+#+end_src
+
+#+RESULTS:
+| (lambda nil (add-hook 'make-local-variable 'after-save-hook (lambda nil (eval-buffer)))) | *emacs-lisp-mode | semantic-default-elisp-setup | eval-buffer | ert--activate-font-lock-keywords | enable-paredit-mode | flycheck-mode |
